@@ -1,0 +1,2 @@
+ctrl alt q = end script
+ctrl alt m = starts shutdown script
