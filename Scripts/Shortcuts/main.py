@@ -12,8 +12,8 @@ from pynput import mouse, keyboard
 
 # --- CONFIGURATION ---
 CONFIG = {
-    "wallpaper_default": r"C:\Users\Sweetwaters Church\Pictures\wallpaper.png",
-    "wallpaper_alt": r"C:\Users\Sweetwaters Church\Pictures\wallpaper2.png",
+    "wallpaper_black": os.path.join(os.path.dirname(os.path.realpath(__file__)), "images", "black.png"),
+    "wallpaper": os.path.join(os.path.dirname(os.path.realpath(__file__)), "images", "wallpaper.png"),
     "scripts_dir": os.path.dirname(os.path.realpath(__file__)),
     "images_dir": os.path.join(os.path.dirname(os.path.realpath(__file__)), "images"),
     "paths": {
@@ -269,7 +269,7 @@ class AutomationEngine:
         p.rightClick(self.screen_w // 2, self.screen_h // 2)
         p.press(['right', 'up', 'enter'])
         
-        win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper_default"], 1+2)
+        win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper_black"], 1+2)
         self.exec_kill_all()
         os.system('exit')
         exit()
@@ -341,7 +341,7 @@ class AutomationEngine:
     # --- MAIN LOOP ---
     def run(self):
         # Set Wallpaper
-        win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper_alt"], 1+2)
+        win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper"], 1+2)
         print("Engine Started. Listening...")
 
         # Start Threads
@@ -376,10 +376,10 @@ class AutomationEngine:
     def handle_global_command(self, cmd):
         print(f"Executing: {cmd}")
         if cmd == 'exit':
-            win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper_default"], 1+2)
+            win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper_black"], 1+2)
             self.running = False
         elif cmd == 'pause':
-            win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper_default"], 1+2)
+            win32gui.SystemParametersInfo(win32con.SPI_SETDESKWALLPAPER, CONFIG["wallpaper_black"], 1+2)
             subprocess.Popen(["pythonw", "paused.py"], cwd=CONFIG["scripts_dir"])
             self.running = False
         elif cmd == 'shutdown': self.exec_shutdown_routine()
