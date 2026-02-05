@@ -215,7 +215,7 @@
 ; waveform = 1
 
 [color]
-background = '#1e1e2e'
+background = 'default'
 
 gradient = 1
 
